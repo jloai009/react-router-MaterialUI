@@ -1,16 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import {
-  Container,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Paper,
-} from '@material-ui/core'
-
-import {
   BrowserRouter as Router,
   Switch,
   Route,
@@ -19,6 +9,19 @@ import {
   useRouteMatch,
   useHistory,
 } from "react-router-dom"
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+  TextField,
+  Button
+} from '@material-ui/core'
+
+
 
 const Home = () => (
   <div> 
@@ -82,12 +85,16 @@ const Login = (props) => {
       <h2>login</h2>
       <form onSubmit={onSubmit}>
         <div>
-          username: <input />
+          <TextField label="username" />
         </div>
         <div>
-          password: <input type='password' />
+          <TextField label="password" type='password' />
         </div>
-        <button type="submit">login</button>
+        <div>
+          <Button variant="contained" color="primary" type="submit">
+            login
+          </Button>
+        </div>
       </form>
     </div>
   )
@@ -116,9 +123,14 @@ const App = () => {
   ])
 
   const [user, setUser] = useState(null) 
+  const [message, setMessage] = useState(null)
 
   const login = (user) => {
     setUser(user)
+    setMessage(`welcome ${user}`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 10000)
   }
 
   const padding = {
