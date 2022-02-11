@@ -20,7 +20,7 @@ import {
   TextField,
   Button
 } from '@material-ui/core'
-
+import { Alert } from '@material-ui/lab'
 
 
 const Home = () => (
@@ -145,6 +145,12 @@ const App = () => {
   return (
     
     <Container>
+      <div>
+        {(message &&
+          <Alert severity="success">
+            {message}
+          </Alert>)}
+      </div>
       <div>
         <Link style={padding} to="/">home</Link>
         <Link style={padding} to="/notes">notes</Link>
