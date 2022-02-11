@@ -1,5 +1,14 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from '@material-ui/core'
 
 import {
   BrowserRouter as Router,
@@ -31,13 +40,20 @@ const Note = ({ note }) => {
 const Notes = ({notes}) => (
   <div>
     <h2>Notes</h2>
-    <ul>
-      {notes.map(note =>
-        <li key={note.id}>
-          <Link to={`/notes/${note.id}`}>{note.content}</Link>
-        </li>
-      )}
-    </ul>
+
+    <TableContainer component={Paper}>
+      <Table>
+        <TableBody>
+          {notes.map(note => (
+            <TableRow key={note.id}>
+              <TableCell>
+                <Link to={`/notes/${note.id}`}>{note.content}</Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   </div>
 )
 
@@ -115,7 +131,8 @@ const App = () => {
     : null
 
   return (
-    <div>
+    
+    <Container>
       <div>
         <Link style={padding} to="/">home</Link>
         <Link style={padding} to="/notes">notes</Link>
@@ -147,7 +164,7 @@ const App = () => {
         <br />
         <em>Note app, Department of Computer Science 2021</em>
       </div>
-    </div>
+    </Container>
   )
 }
 
